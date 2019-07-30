@@ -9,8 +9,8 @@ from astropy import units as u
 import pandas as pd
 from astropy.io import ascii
 
-from desiutil.log import get_logger, DEBUG
-log = get_logger()
+#from desiutil.log import get_logger, DEBUG
+#log = get_logger()
 class Point:
 
     def __init__(self, xcoord=0, ycoord=0):

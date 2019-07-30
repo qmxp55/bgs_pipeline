@@ -243,29 +243,36 @@ def results(a=None, b=None, f=None, b2=None, f2=None, stage='geo', per=True, tit
     
 def masking(title, submasks, details):
     
-    R = '%s \n\n' %(title)
+    if details or submasks is not None:
+        R = '%s \n\n' %(title)
+    else:
+        R = '%s' %(title)
+    
     if submasks is not None:
         N = len(submasks)
     if details is not None:
         N = len(details)
         
-    for i in range(N):
-        if details and submasks is not None:
+    if details and submasks is not None:
+        for i in range(N):
             if i<len(submasks)-1:
                 R +='%i) %s \n %s \n' %(i+1, submasks[i], details[i])
             else:
                 R +='%i) %s \n %s' %(i+1, submasks[i], details[i])
-        else:
-            if submasks is not None:
-                if i<len(submasks)-1:
-                    R +='%i) %s \n' %(i+1, submasks[i])
-                else:
-                    R +='%i) %s' %(i+1, submasks[i])
-            if details is not None:
-                if i<len(details)-1:
-                    R +='%i) %s \n' %(i+1, details[i])
-                else:
-                    R +='%i) %s' %(i+1, details[i])
+                
+    elif submasks is not None:
+        for i in range(N):
+            if i<len(submasks)-1:
+                R +='%i) %s \n' %(i+1, submasks[i])
+            else:
+                R +='%i) %s' %(i+1, submasks[i])
+                
+    elif details is not None:
+        for i in range(N):
+            if i<len(details)-1:
+                R +='%i) %s \n' %(i+1, details[i])
+            else:
+                R +='%i) %s' %(i+1, details[i])
     
     return [R]
         
